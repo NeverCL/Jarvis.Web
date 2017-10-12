@@ -94,10 +94,10 @@ namespace Jarvis.Web.Host
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello World develop!" + env.WebRootPath);
-            });
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello World develop!" + env.WebRootPath);
+            //});
         }
     }
 }
