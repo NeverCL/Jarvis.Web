@@ -89,10 +89,9 @@ namespace Jarvis.Web.Host
                 app.UseExceptionHandler("/Error");
             }
 
-            var staticfile = new StaticFileOptions { FileProvider = new PhysicalFileProvider(env.WebRootPath) };
-            app.UseStaticFiles(staticfile);
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
+            app.UseStaticFiles( new StaticFileOptions { FileProvider = new PhysicalFileProvider(env.WebRootPath) });
 
             //app.Run(async (context) =>
             //{
