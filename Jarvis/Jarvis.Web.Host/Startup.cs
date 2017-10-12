@@ -91,7 +91,7 @@ namespace Jarvis.Web.Host
 
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
-            app.UseStaticFiles( new StaticFileOptions { FileProvider = new PhysicalFileProvider(env.WebRootPath) });
+            app.UseStaticFiles();
 
             //app.Run(async (context) =>
             //{
