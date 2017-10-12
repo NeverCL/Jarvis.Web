@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace Jarvis.Web.Host
 {
@@ -88,7 +89,8 @@ namespace Jarvis.Web.Host
                 app.UseExceptionHandler("/Error");
             }
 
-            app.UseStaticFiles();
+            var staticfile = new StaticFileOptions { FileProvider = env.WebRootFileProvider };
+            app.UseStaticFiles(staticfile);
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
 
