@@ -10,5 +10,8 @@ namespace Jarvis.Core
         {
 
         }
+
+
+        public DbSet<Joke> Jokes { get; set; }
     }
 }

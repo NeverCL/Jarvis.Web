@@ -30,8 +30,9 @@ namespace Jarvis.Web.Host
         {
             services.AddDbContext<JarvisDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
                 //options.UseInMemoryDatabase(JarvisConsts.AppName);
+                options.UseMySql(Configuration.GetConnectionString("DefaultConnection"));
             });
 
             #region Identity
