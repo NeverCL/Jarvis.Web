@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Jarvis.Application.Joke;
 using Jarvis.Application.Joke.Dto;
 using Jarvis.Application.Module;
@@ -8,7 +9,7 @@ using Jarvis.Core;
 
 namespace Jarvis.Application
 {
-    public class JokeApplication
+    public class JokeApplication : IJokeApplication
     {
         private JarvisDbContext _dbContext;
         public JokeApplication(JarvisDbContext dbContext)
@@ -23,7 +24,9 @@ namespace Jarvis.Application
             return jokes.MapTo<IList<JokeDto>>();
         }
 
-
-
+        public Task CreateJoke(JokeDto input)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

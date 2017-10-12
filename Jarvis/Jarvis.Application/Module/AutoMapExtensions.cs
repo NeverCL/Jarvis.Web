@@ -7,6 +7,14 @@ namespace Jarvis.Application.Module
 {
     public static class AutoMapExtensions
     {
+        static AutoMapExtensions()
+        {
+            Mapper.Initialize(x =>
+            {
+                x.CreateMissingTypeMaps = true;
+            });
+        }
+
         /// <summary>
         /// Converts an object to another using AutoMapper library. Creates a new object of <typeparamref name="TDestination" />.
         /// There must be a mapping between objects before calling this method.

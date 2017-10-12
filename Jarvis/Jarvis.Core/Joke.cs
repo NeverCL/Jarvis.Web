@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Jarvis.Core.Module;
 
 namespace Jarvis.Core
 {
     public class Joke
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = GuidBuilder.Build();
 
         /// <summary>
         /// 标题
         /// </summary>
         public string Title { get; set; }
-        
+
         /// <summary>
         /// 视频内容
         /// </summary>
