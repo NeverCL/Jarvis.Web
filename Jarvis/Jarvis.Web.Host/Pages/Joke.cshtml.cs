@@ -5,8 +5,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
-using Jarvis.Web.Host.Controllers;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Jarvis.Web.Host.Pages
@@ -31,5 +29,16 @@ namespace Jarvis.Web.Host.Pages
                     Video = x.ChildNodes["videourl"]?.InnerText,
                 }).ToList();
         }
+    }
+
+    public class JokeDto
+    {
+        public string Title { get; set; }
+
+        public string Content { get; set; }
+
+        public string Video { get; set; }
+
+        public string Image { get; set; }
     }
 }
