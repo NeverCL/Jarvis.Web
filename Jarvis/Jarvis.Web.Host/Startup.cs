@@ -89,14 +89,14 @@ namespace Jarvis.Web.Host
                 app.UseExceptionHandler("/Error");
             }
 
-            var staticfile = new StaticFileOptions { FileProvider = env.WebRootFileProvider };
+            var staticfile = new StaticFileOptions { FileProvider = new PhysicalFileProvider(env.WebRootPath) };
             app.UseStaticFiles(staticfile);
             app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World develop!");
+                await context.Response.WriteAsync("Hello World develop!" + env.WebRootPath);
             });
         }
     }
