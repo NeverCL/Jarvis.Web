@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Specialized;
 using System.Threading.Tasks;
+using Jarvis.Web.Host.Jobs;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using Quartz.Impl;
+using Quartz.Impl.Triggers;
 
 namespace Jarvis.Web.Host
 {
@@ -14,7 +12,23 @@ namespace Jarvis.Web.Host
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            InitQuartz().GetAwaiter().GetResult();  // Init Quartz
+            BuildWebHost(args).Run();   // Init Web
+        }
+
+        private static async Task InitQuartz()
+        {
+            //NameValueCollection props = new NameValueCollection
+            //{
+            //    { "quartz.serializer.type", "binary" }
+            //};
+            //StdSchedulerFactory factory = new StdSchedulerFactory(props);
+            var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
+
+            // and start it off
+            await scheduler.Start();
+
+            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "*/1 * * * * ?"));
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
