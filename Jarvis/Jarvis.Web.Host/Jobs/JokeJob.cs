@@ -6,11 +6,14 @@ using Quartz;
 
 namespace Jarvis.Web.Host.Jobs
 {
+    /// <summary>
+    /// 每分钟拉取最新Joke
+    /// </summary>
     public class JokeJob : IJob
     {
         public Task Execute(IJobExecutionContext context)
         {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

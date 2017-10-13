@@ -16,7 +16,6 @@ namespace Jarvis.Tests.Module
         public JarvisTestBase()
         {
             _serviceProvider = new ServiceCollection()
-                .AddTransient<IJokeApplication, JokeApplication>()
                 .AddDbContext<JarvisDbContext>(options =>
                 {
                     options.UseMySql("Server=dev.neverc.cn;database=TestDb;uid=root;pwd=123123;port=32772");
