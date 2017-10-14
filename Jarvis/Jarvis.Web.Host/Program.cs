@@ -28,7 +28,7 @@ namespace Jarvis.Web.Host
             // and start it off
             await scheduler.Start();
 
-            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "*/1 * * * * ?"));
+            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "0 * * * * ?"));
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

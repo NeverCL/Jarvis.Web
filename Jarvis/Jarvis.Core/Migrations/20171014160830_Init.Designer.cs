@@ -11,7 +11,7 @@ using System;
 namespace Jarvis.Core.Migrations
 {
     [DbContext(typeof(JarvisDbContext))]
-    [Migration("20171012112422_Init")]
+    [Migration("20171014160830_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,7 +98,45 @@ namespace Jarvis.Core.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Jarvis.Core.Joke", b =>
+            modelBuilder.Entity("Jarvis.Core.Company.Company", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(32);
+
+                    b.Property<string>("Address")
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("CreateTime");
+
+                    b.Property<string>("LegalUser")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Mobile")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("RegisteredCapital")
+                        .HasMaxLength(128);
+
+                    b.Property<DateTime>("RegisteredTime");
+
+                    b.Property<string>("Site")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ThirdCode");
+
+                    b.Property<string>("TrustCode")
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("Jarvis.Core.Joke.Joke", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jarvis.Application
 {
-    public class JokeApplication
+    public class JokeApplication:BaseApplication, IJokeApplication
     {
         private readonly JarvisDbContext _dbContext;
 

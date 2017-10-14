@@ -10,6 +10,6 @@ namespace Jarvis.Application.Joke
     {
         IList<JokeDto> GetJokes(GetJokesInput input);
 
-        Task CreateJoke(JokeDto input);
+        Task CreateJoke(DateTime date, int pageIndex);
     }
 }

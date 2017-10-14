@@ -13,5 +13,8 @@ namespace Jarvis.Core
 
 
         public DbSet<Joke.Joke> Jokes { get; set; }
+
+        public DbSet<Company.Company> Companies{ get; set; }
+        public DbSet<Company.CompanyListUrl> CompanyListUrls{ get; set; }
     }
 }

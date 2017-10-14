@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Web.Host", "Jarvis.Web.Host\Jarvis.Web.Host.csproj", "{85C35296-FA24-446F-8095-90E4B3800884}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Core", "Jarvis.Core\Jarvis.Core.csproj", "{4AADF524-91CD-4B2C-A022-5DE9424BD3C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Application", "Jarvis.Application\Jarvis.Application.csproj", "{3BDE4826-B388-44A6-86F0-9E3AAD48CA63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Application", "Jarvis.Application\Jarvis.Application.csproj", "{3BDE4826-B388-44A6-86F0-9E3AAD48CA63}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{37771746-FC58-4D6D-8438-45AFC5F98F97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Tests", "Jarvis.Tests\Jarvis.Tests.csproj", "{F82E7E90-8DE3-42C1-B3F9-A32281DF8D3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Tests", "Jarvis.Tests\Jarvis.Tests.csproj", "{F82E7E90-8DE3-42C1-B3F9-A32281DF8D3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

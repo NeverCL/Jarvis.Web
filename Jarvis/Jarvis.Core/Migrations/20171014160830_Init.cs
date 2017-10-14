@@ -51,6 +51,27 @@ namespace Jarvis.Core.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "varchar(32)", maxLength: 32, nullable: false),
+                    Address = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LegalUser = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    Mobile = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    Name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    RegisteredCapital = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    RegisteredTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Site = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true),
+                    ThirdCode = table.Column<string>(type: "longtext", nullable: true),
+                    TrustCode = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Jokes",
                 columns: table => new
                 {
@@ -225,6 +246,9 @@ namespace Jarvis.Core.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Jokes");
