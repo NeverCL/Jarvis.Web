@@ -1,4 +1,5 @@
-﻿using System.Collections.Specialized;
+﻿using System;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using Jarvis.Web.Host.Jobs;
 using Microsoft.AspNetCore;
@@ -12,8 +13,9 @@ namespace Jarvis.Web.Host
     {
         public static void Main(string[] args)
         {
-            InitQuartz().GetAwaiter().GetResult();  // Init Quartz
-            BuildWebHost(args).Run();   // Init Web
+            //InitQuartz().GetAwaiter().GetResult();  // Init Quartz
+            new CompanyJob().Loop();
+            BuildWebHost(args).Run();   // Init Web 阻塞方法
         }
 
         private static async Task InitQuartz()
