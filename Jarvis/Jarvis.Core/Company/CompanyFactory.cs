@@ -29,6 +29,9 @@ namespace Jarvis.Core.Company
             {
                 url = url.StartsWith("http") ? url : "https://www.tianyancha.com/company/" + url;
                 var thirdCode = url.Substring(35);
+
+                _dbContext.CompanyListUrls.Add(new CompanyListUrl(url));
+                await _dbContext.SaveChangesAsync();
                 // !! 暂时不做更新处理
                 if (await _dbContext.Companies.AsNoTracking().AnyAsync(x => x.ThirdCode == thirdCode))
                     return;
