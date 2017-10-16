@@ -21,12 +21,12 @@ namespace Jarvis.Web.Host.Jobs
                 })
                 .BuildServiceProvider();
 
-            int i = 10000;
+            long i = 2316538306;
             while (true)
             {
                 var url = "https://www.tianyancha.com/company/" + (i++);
                 await _serviceProvider.GetService<CompanyFactory>().CreateCompany(url);
-                await Task.Delay(1000);
+                await Task.Delay(100);
             }
         }
     }
