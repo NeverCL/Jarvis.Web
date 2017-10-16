@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Jarvis.Application
 {
-    public class JokeApplication:BaseApplication, IJokeApplication
+    public class JokeApplication : BaseApplication, IJokeApplication
     {
         private readonly JarvisDbContext _dbContext;
 
@@ -27,12 +27,5 @@ namespace Jarvis.Application
             return jokes.MapTo<IList<JokeDto>>();
         }
 
-        public async Task CreateJoke(DateTime date, int pageIndex)
-        {
-            var jokes = await new JokeFactory().Build(date, pageIndex);
-            jokes = jokes.Where(x => _dbContext.Jokes.AsNoTracking().Any(y => y.ImageUrl == x.ImageUrl)).ToList();
-            _dbContext.Jokes.AddRange(jokes.ToArray());
-            _dbContext.SaveChanges();
-        }
     }
 }

@@ -9,7 +9,5 @@ namespace Jarvis.Application.Joke
     public interface IJokeApplication
     {
         IList<JokeDto> GetJokes(GetJokesInput input);
-
-        Task CreateJoke(DateTime date, int pageIndex);
     }
 }
