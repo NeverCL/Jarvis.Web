@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Jarvis.Core;
 using Jarvis.Core.Authorization;
+using Jarvis.Core.Company;
+using Jarvis.Web.Host.Module;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -75,6 +77,8 @@ namespace Jarvis.Web.Host
             #endregion
 
             services.AddMvc();
+
+            ServiceProviderService.Init(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

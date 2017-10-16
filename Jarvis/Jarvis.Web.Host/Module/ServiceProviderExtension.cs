@@ -2,18 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Jarvis.Core.Company;
 using Microsoft.AspNetCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Jarvis.Web.Host.Module
 {
-    public class ServiceProviderExtension
+    public static class ServiceProviderService
     {
-        //public static IServiceProvider ServiceProvider => Program.WebServer.Services;
+        private static IServiceProvider _serviceProvider;
 
-        //public static T GetService<T>() where T : class
-        //{
-        //    return ServiceProvider.GetService(typeof(T)) as T;
-        //}
+        public static void Init(IServiceCollection services)
+        {
+            services.AddTransient<CompanyFactory>();
+
+            _serviceProvider = services.BuildServiceProvider();
+        }
+
+        public static object GetService(Type serviceType)
+        {
+            return _serviceProvider.GetService(serviceType);
+        }
+
+        public static T GetService<T>() where T : class
+        {
+            return _serviceProvider.GetService(typeof(T)) as T;
+        }
 
     }
 }

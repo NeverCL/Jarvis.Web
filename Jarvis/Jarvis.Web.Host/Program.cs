@@ -13,12 +13,11 @@ namespace Jarvis.Web.Host
     {
         public static void Main(string[] args)
         {
-            //InitQuartz().GetAwaiter().GetResult();  // Init Quartz
-            new CompanyJob().Loop();
+            InitQuartzAsync();  // Init Quartz 异步
             BuildWebHost(args).Run();   // Init Web 阻塞方法
         }
 
-        private static async Task InitQuartz()
+        private static async Task InitQuartzAsync()
         {
             //NameValueCollection props = new NameValueCollection
             //{
@@ -30,7 +29,8 @@ namespace Jarvis.Web.Host
             // and start it off
             await scheduler.Start();
 
-            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "0 * * * * ?"));
+
+            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "0/3 * * * * ?"));
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

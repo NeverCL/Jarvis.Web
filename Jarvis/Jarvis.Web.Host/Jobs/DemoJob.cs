@@ -14,22 +14,14 @@ namespace Jarvis.Web.Host.Jobs
 {
     public class DemoJob : IJob
     {
-        private readonly ServiceProvider _serviceProvider;
         public DemoJob()
         {
-            _serviceProvider = new ServiceCollection()
-                .AddTransient<CompanyFactory>()
-                .AddDbContext<JarvisDbContext>(options =>
-                {
-                    options.UseMySql("Server=dev.neverc.cn;database=TestDb;uid=root;pwd=123123;");
-                })
-                .BuildServiceProvider();
+
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
             Console.WriteLine("hello");
-            await _serviceProvider.GetService<CompanyFactory>().ActiveCompanyListUrl(null);
         }
     }
 }
