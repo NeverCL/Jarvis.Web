@@ -10,16 +10,15 @@ namespace Jarvis.Core.Module
         public virtual T Id { get; set; }
     }
 
-    public class CreateEntity : BaseEntity<string>
+    public class CreateEntity : CreateEntity<string>
     {
         [StringLength(32)]
-        public sealed override string Id { get; set; }
+        public sealed override string Id { get; set; } = GuidBuilder.Build();
+    }
 
-        public CreateEntity()
-        {
-            Id = GuidBuilder.Build();
-        }
-
+    public class CreateEntity<T> : BaseEntity<T>
+    {
         public DateTime CreateTime { get; set; } = DateTime.Now;
     }
+
 }

@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
+using Jarvis.Core.HttpData;
 using Jarvis.Core.Module;
 using Microsoft.EntityFrameworkCore;
 using Module.Dependency;
@@ -15,10 +16,12 @@ namespace Jarvis.Core.Joke
     public class JokeFactory : ITransientDependency
     {
         private readonly JarvisDbContext _dbContext;
+        private readonly HttpDataFactory _httpDataFactory;
 
-        public JokeFactory(JarvisDbContext dbContext)
+        public JokeFactory(JarvisDbContext dbContext, HttpDataFactory httpDataFactory)
         {
             this._dbContext = dbContext;
+            _httpDataFactory = httpDataFactory;
         }
 
         protected async Task<List<Joke>> GetJokes(DateTime date, int pageIndex)
@@ -26,14 +29,15 @@ namespace Jarvis.Core.Joke
             var html = await HttpHelp.DefaultClient.GetStringAsync("http://joke.zaijiawan.com/Joke/joke2.jsp?appname=readingxiaonimei&version=4.2.0&os=ios&sort=1&timestamp=" + date.ToString("yyyy-MM-dd hh:mm:ss") + "&page=" + pageIndex);
             var doc = new HtmlDocument();
             doc.LoadHtml(html);
-            return doc.DocumentNode
-                .SelectNodes("//root/joke").Select(x => new Joke
-                {
-                    Title = x.ChildNodes["text"].InnerText,
-                    ImageUrl = x.ChildNodes["imgurl"].InnerText,
-                    VideoUrl = x.ChildNodes["videourl"]?.InnerText,
-                    CreateTime = date
-                }).ToList();
+            var jokes = doc.DocumentNode.SelectNodes("//root/joke");
+            _httpDataFactory.SaveData(new HttpData.HttpData(jokes.Select(x => x.OuterHtml), SiteType.Joke));
+            return jokes.Select(x => new Joke
+            {
+                Title = x.ChildNodes["text"].InnerText,
+                ImageUrl = x.ChildNodes["imgurl"].InnerText,
+                VideoUrl = x.ChildNodes["videourl"]?.InnerText,
+                CreateTime = date
+            }).ToList();
         }
 
         /// <summary>

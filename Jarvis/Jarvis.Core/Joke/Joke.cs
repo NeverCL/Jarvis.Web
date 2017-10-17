@@ -10,10 +10,8 @@ using Jarvis.Core.Module;
 
 namespace Jarvis.Core.Joke
 {
-    public class Joke
+    public class Joke : CreateEntity
     {
-        public string Id { get; set; } = GuidBuilder.Build();
-
         /// <summary>
         /// 标题
         /// </summary>
@@ -28,11 +26,5 @@ namespace Jarvis.Core.Joke
         /// 图片地址
         /// </summary>
         public string ImageUrl { get; set; }
-
-
-        public DateTime CreateTime { get; set; } = DateTime.Now;
-
-
-
     }
 }
