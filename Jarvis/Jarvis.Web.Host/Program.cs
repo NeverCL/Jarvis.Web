@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Threading.Tasks;
-using Jarvis.Web.Host.Jobs;
-using Jarvis.Web.Host.Module;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Quartz;
-using Quartz.Impl;
-using Quartz.Impl.Triggers;
-using Quartz.Simpl;
 using Quartz.Spi;
 
 namespace Jarvis.Web.Host
@@ -18,27 +10,7 @@ namespace Jarvis.Web.Host
     {
         public static void Main(string[] args)
         {
-            ServiceProviderService.Prepare += async provider =>
-            {
-                await InitQuartzAsync(provider); // Init Quartz 异步
-            };
             BuildWebHost(args).Run();   // Init Web 阻塞方法
-        }
-
-        private static async Task InitQuartzAsync(IServiceProvider serviceProvider)
-        {
-            //NameValueCollection props = new NameValueCollection
-            //{
-            //    { "quartz.serializer.type", "binary" }
-            //};
-            //StdSchedulerFactory factory = new StdSchedulerFactory(props);
-            var scheduler = await StdSchedulerFactory.GetDefaultScheduler();
-
-            // and start it off
-            await scheduler.Start();
-
-            scheduler.JobFactory = new JobFactory(serviceProvider);
-            await scheduler.ScheduleJob(new JobDetailImpl("job", typeof(DemoJob)), new CronTriggerImpl("trigger", "trigger", "0/3 * * * * ?"));
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
@@ -63,7 +35,7 @@ namespace Jarvis.Web.Host
 
             try
             {
-                var obj = ServiceProviderService.GetService(jobType) as IJob;
+                var obj = _serviceProvider.GetService(jobType) as IJob;
                 return obj;
             }
             catch (Exception ex)

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Jarvis.Core.Joke;
-using Jarvis.Web.Host.Module;
 using Microsoft.Extensions.Logging;
+using Module;
 
 namespace Jarvis.Web.Host.Jobs
 {
-    public class JokeHandle : IAlwaysHandle
+    public class JokeHandle : ITaskHandle
     {
         private readonly JokeFactory _jokeFactory;
         private DateTime _startDate = DateTime.Parse("2016/1/25 14:32:00");

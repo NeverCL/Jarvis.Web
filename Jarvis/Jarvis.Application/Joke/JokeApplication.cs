@@ -8,10 +8,11 @@ using Jarvis.Application.Module;
 using Jarvis.Core;
 using Jarvis.Core.Joke;
 using Microsoft.EntityFrameworkCore;
+using Module.Dependency;
 
 namespace Jarvis.Application
 {
-    public class JokeApplication : BaseApplication, IJokeApplication
+    public class JokeApplication : BaseApplication, IJokeApplication, ITransientDependency
     {
         private readonly JarvisDbContext _dbContext;
 

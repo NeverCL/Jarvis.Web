@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Jarvis.Application.Joke;
-using Jarvis.Core;
-using Jarvis.Core.Company;
-using Jarvis.Web.Host.Module;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
+using Module.Dependency;
 using Quartz;
 
 namespace Jarvis.Web.Host.Jobs
 {
-    public class DemoJob : IJob
+    public class DemoJob : IJob, ITransientDependency
     {
         //private readonly ILogger _logger;
 
@@ -24,7 +15,7 @@ namespace Jarvis.Web.Host.Jobs
 
         public DemoJob()
         {
-            
+
         }
 
         public async Task Execute(IJobExecutionContext context)

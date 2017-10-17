@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Jarvis.Core;
 using Jarvis.Core.Authorization;
-using Jarvis.Core.Company;
-using Jarvis.Web.Host.Module;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
+using Module;
 
 namespace Jarvis.Web.Host
 {
@@ -78,7 +73,8 @@ namespace Jarvis.Web.Host
 
             services.AddMvc();
 
-            ServiceProviderService.Init(services);
+            // Module加载
+            services.AddModule();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
