@@ -11,17 +11,12 @@ namespace Jarvis.Web.Host.Pages.Company
 {
     public class CreateModel : PageModel
     {
-        private JarvisDbContext _dbContext;
-
-        public CreateModel(JarvisDbContext dbContext)
+        public CreateModel()
         {
-            this._dbContext = dbContext;
         }
 
         public void OnGet(string url)
         {
-            _dbContext.CompanyListUrls.Add(new CompanyListUrl(url));
-            _dbContext.SaveChanges();
         }
     }
 }

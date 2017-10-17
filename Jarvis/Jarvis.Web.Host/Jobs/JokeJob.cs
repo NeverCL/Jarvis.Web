@@ -23,7 +23,7 @@ namespace Jarvis.Web.Host.Jobs
 
         public async Task Execute(IJobExecutionContext context)
         {
-            await _jokeFactory.Sync();
+            //await _jokeFactory.Sync();
         }
     }
 }

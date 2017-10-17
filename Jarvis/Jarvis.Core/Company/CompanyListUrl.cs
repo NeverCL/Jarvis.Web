@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using Jarvis.Core.Module;
+using Module.Domain.Entities;
 
 namespace Jarvis.Core.Company
 {

@@ -14,19 +14,19 @@ namespace Jarvis.Application
 {
     public class JokeApplication : BaseApplication, IJokeApplication, ITransientDependency
     {
-        private readonly JarvisDbContext _dbContext;
+        //private readonly JarvisDbContext _dbContext;
 
-        public JokeApplication(JarvisDbContext dbContext)
-        {
-            this._dbContext = dbContext;
-        }
+        //public JokeApplication(JarvisDbContext dbContext)
+        //{
+        //    this._dbContext = dbContext;
+        //}
 
-        public IList<JokeDto> GetJokes(GetJokesInput input)
-        {
-            var jokes = _dbContext.Jokes.OrderByDescending(x => x.CreateTime).PageBy(input);
+        //public IList<JokeDto> GetJokes(GetJokesInput input)
+        //{
+        //    var jokes = _dbContext.Jokes.OrderByDescending(x => x.CreateTime).PageBy(input);
 
-            return jokes.MapTo<IList<JokeDto>>();
-        }
+        //    return jokes.MapTo<IList<JokeDto>>();
+        //}
 
     }
 }

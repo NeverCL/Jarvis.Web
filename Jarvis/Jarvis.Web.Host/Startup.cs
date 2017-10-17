@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Module;
+using Jarvis.EntityFrameworkCore;
 
 namespace Jarvis.Web.Host
 {

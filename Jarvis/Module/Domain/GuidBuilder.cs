@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Jarvis.Core.Module
+namespace Module.Domain
 {
     public class GuidBuilder
     {

@@ -26,7 +26,7 @@ namespace Jarvis.Web.Host.Jobs
             {
                 try
                 {
-                    await _jokeFactory.SyncHistory(i++, _startDate);
+                    //await _jokeFactory.SyncHistory(i++, _startDate);
                     await Task.Delay(100);
                 }
                 catch (Exception)

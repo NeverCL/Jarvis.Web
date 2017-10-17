@@ -1,10 +1,9 @@
-﻿using Jarvis.Core.Module;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Module.Domain.Entities;
 
 namespace Jarvis.Core.HttpData
 {
-    public class HttpData : CreateEntity<long>
+    public class HttpData : CreateEntity
     {
         public HttpData()
         {
@@ -21,12 +20,12 @@ namespace Jarvis.Core.HttpData
 
         public SiteType Type { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is HttpData)
-                return ((HttpData) obj).Data == this.Data && ((HttpData) obj).Type == this.Type;
-            return false;
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj is HttpData)
+        //        return ((HttpData) obj).Data == this.Data && ((HttpData) obj).Type == this.Type;
+        //    return false;
+        //}
     }
 
     public enum SiteType

@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Tests", "Jarvis.Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{E7238DF7-67A1-4712-ACBA-082C21BDAC2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Module", "Module\Module.csproj", "{CF2BAC36-2D58-43F6-ACC0-721BC67396B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module", "Module\Module.csproj", "{CF2BAC36-2D58-43F6-ACC0-721BC67396B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.EntityFrameworkCore", "Jarvis.EntityFrameworkCore\Jarvis.EntityFrameworkCore.csproj", "{482D4DDE-E2FB-4A2B-8334-D3EB6F20D616}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{CF2BAC36-2D58-43F6-ACC0-721BC67396B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF2BAC36-2D58-43F6-ACC0-721BC67396B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF2BAC36-2D58-43F6-ACC0-721BC67396B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{482D4DDE-E2FB-4A2B-8334-D3EB6F20D616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{482D4DDE-E2FB-4A2B-8334-D3EB6F20D616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{482D4DDE-E2FB-4A2B-8334-D3EB6F20D616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{482D4DDE-E2FB-4A2B-8334-D3EB6F20D616}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
