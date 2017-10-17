@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Jarvis.Core.Module;
 using Microsoft.EntityFrameworkCore;
+using Module.Dependency;
 
 namespace Jarvis.Core.Joke
 {
-    public class JokeFactory
+    public class JokeFactory : ITransientDependency
     {
         private readonly JarvisDbContext _dbContext;
 
