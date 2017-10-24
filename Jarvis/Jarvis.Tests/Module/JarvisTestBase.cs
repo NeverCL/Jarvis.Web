@@ -6,6 +6,7 @@ using Jarvis.Application;
 using Jarvis.Application.Joke;
 using Jarvis.Core;
 using Jarvis.Core.Company;
+using Jarvis.Core.HttpData;
 using Jarvis.Core.Joke;
 using Jarvis.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -31,19 +32,18 @@ namespace Jarvis.Tests.Module
         private async Task Init()
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddDbContext<JarvisDbContext>(options =>
+            serviceCollection.AddDbContextPool<JarvisDbContext>(options =>
             {
                 options.UseMySql("Server=dev.neverc.cn;database=TestDb;uid=root;pwd=123123;");
             });
-            serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
-            serviceCollection.AddTransient(typeof(IUnitOfWork), typeof(EfUnitOfWork<JarvisDbContext>));
-            serviceCollection.AddTransient(typeof(EfUnitOfWork<JarvisDbContext>), typeof(EfUnitOfWork<JarvisDbContext>));
-            _serviceProvider = serviceCollection.BuildServiceProvider();
-            var unit = _serviceProvider.GetService<IUnitOfWork>();
-            unit = _serviceProvider.GetService<EfUnitOfWork<JarvisDbContext>>();
-            //serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
-            //_serviceProvider = await serviceCollection.AddModuleAsync();
+            //serviceCollection.AddTransient(typeof(IDbContextProvider<>), typeof(DbContextProvider<>));
+            //_serviceProvider = serviceCollection.BuildServiceProvider();
             //var db = _serviceProvider.GetService<DbContext>();
+            //db = _serviceProvider.GetService<JarvisDbContext>();
+            //var dbProvider = _serviceProvider.GetService<IDbContextProvider<JarvisDbContext>>();
+            //serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
+            _serviceProvider = await serviceCollection.AddModuleAsync();
+            var dataFactory = _serviceProvider.GetService<HttpDataFactory>();
         }
 
         public T Resolve<T>()

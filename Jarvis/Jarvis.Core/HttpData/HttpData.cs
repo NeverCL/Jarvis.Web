@@ -4,7 +4,7 @@ using Module.Domain.Entities;
 
 namespace Jarvis.Core.HttpData
 {
-    public class HttpData : CreateEntity
+    public class HttpData : CreateEntity<long>
     {
         public HttpData()
         {

@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Module.Dependency;
-using Module.Domain.Uow;
 
-namespace Module.EntityFrameworkCore.Uow
+namespace Module.EntityFrameworkCore
 {
-    public class EfUnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
+    public class DbContextProvider<TDbContext> : ITransientDependency, IDbContextProvider<TDbContext> where TDbContext : DbContext
     {
-        public string Id { get; } = Guid.NewGuid().ToString();
-
+        private static ThreadLocal<TDbContext> _threadLocalDbContext;
         private readonly TDbContext _dbContext;
 
-        private static ThreadLocal<TDbContext> _threadLocalDbContext;
 
-        public EfUnitOfWork(TDbContext dbContext)
+        public DbContextProvider(TDbContext dbContext)
         {
             _dbContext = dbContext;
             if (_threadLocalDbContext != null && _threadLocalDbContext.IsValueCreated)
@@ -28,15 +24,9 @@ namespace Module.EntityFrameworkCore.Uow
             }
         }
 
-        public virtual TDbContext GetDbContext()
+        public TDbContext GetDbContext()
         {
             return _dbContext;
         }
-
-        public void SaveChanges()
-        {
-            _dbContext.SaveChanges();
-        }
-
     }
 }

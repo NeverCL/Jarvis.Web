@@ -13,7 +13,7 @@ namespace Module.Domain.Repository
     {
 
     }
-    public interface IRepository<TEntity, TPrimaryKey> : ITransientDependency where TEntity : class, IEntity<TPrimaryKey>
+    public interface IRepository<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
     {
         /// <summary>
         /// Used to get a IQueryable that is used to retrieve entities from entire table.

@@ -7,10 +7,10 @@ using Module.EntityFrameworkCore.Uow;
 
 namespace Jarvis.EntityFrameworkCore
 {
-    public class JarvisRepository<TEntity, TPrimaryKey> : EfCoreRepositoryBase<JarvisDbContext, TEntity, TPrimaryKey>, ITransientDependency
+    public class JarvisRepository<TEntity, TPrimaryKey> : EfCoreRepositoryBase<JarvisDbContext, TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
-        public JarvisRepository(JarvisUnitOfWork unitOfWork) : base(unitOfWork.GetDbContext())
+        public JarvisRepository(IDbContextProvider<JarvisDbContext> dbContextProvider) : base(dbContextProvider.GetDbContext())
         {
 
         }
@@ -19,7 +19,7 @@ namespace Jarvis.EntityFrameworkCore
     public class JarvisRepository<TEntity> : JarvisRepository<TEntity, string>
         where TEntity : class, IEntity<string>
     {
-        public JarvisRepository(JarvisUnitOfWork unitOfWork) : base(unitOfWork)
+        public JarvisRepository(IDbContextProvider<JarvisDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }
