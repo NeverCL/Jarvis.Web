@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Module.Domain.Entities;
 using Module.Domain.Repository;
 using Microsoft.EntityFrameworkCore;
+using Module.Domain.Uow;
+using Module.EntityFrameworkCore.Uow;
 using Module.Extensions;
 
 namespace Module.EntityFrameworkCore.Repositories

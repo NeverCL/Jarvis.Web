@@ -1,23 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Jarvis.Application;
 using Jarvis.Application.Joke;
 using Jarvis.Core;
 using Jarvis.Core.Company;
 using Jarvis.Core.Joke;
+using Jarvis.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Module;
+using Module.Domain.Uow;
+using Module.EntityFrameworkCore;
+using Module.EntityFrameworkCore.Uow;
+using Xunit;
 
 namespace Jarvis.Tests.Module
 {
     public class JarvisTestBase
     {
-        private readonly ServiceProvider _serviceProvider;
+        private ServiceProvider _serviceProvider;
 
         public JarvisTestBase()
         {
-           
+            Init().Wait();
+        }
+
+        [Fact]
+        private async Task Init()
+        {
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddDbContext<JarvisDbContext>(options =>
+            {
+                options.UseMySql("Server=dev.neverc.cn;database=TestDb;uid=root;pwd=123123;");
+            });
+            serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
+            serviceCollection.AddTransient(typeof(IUnitOfWork), typeof(EfUnitOfWork<JarvisDbContext>));
+            serviceCollection.AddTransient(typeof(EfUnitOfWork<JarvisDbContext>), typeof(EfUnitOfWork<JarvisDbContext>));
+            _serviceProvider = serviceCollection.BuildServiceProvider();
+            var unit = _serviceProvider.GetService<IUnitOfWork>();
+            unit = _serviceProvider.GetService<EfUnitOfWork<JarvisDbContext>>();
+            //serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
+            //_serviceProvider = await serviceCollection.AddModuleAsync();
+            //var db = _serviceProvider.GetService<DbContext>();
         }
 
         public T Resolve<T>()

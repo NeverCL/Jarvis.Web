@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Jarvis.Application.Joke;
 using Jarvis.Application.Joke.Dto;
 using Jarvis.Application.Module;
-using Jarvis.Core;
-using Jarvis.Core.Joke;
-using Microsoft.EntityFrameworkCore;
 using Module.Dependency;
+using Jarvis.EntityFrameworkCore;
 
 namespace Jarvis.Application
 {
@@ -20,6 +16,7 @@ namespace Jarvis.Application
         //{
         //    this._dbContext = dbContext;
         //}
+        //private JarvisRepositoryBase<Core.Joke.Joke> jokeRepository;
 
         //public IList<JokeDto> GetJokes(GetJokesInput input)
         //{
@@ -28,5 +25,18 @@ namespace Jarvis.Application
         //    return jokes.MapTo<IList<JokeDto>>();
         //}
 
+        private readonly JarvisRepository<Core.Joke.Joke> _jokeRepository;
+
+        public JokeApplication(JarvisRepository<Core.Joke.Joke> jokeRepository)
+        {
+            this._jokeRepository = jokeRepository;
+        }
+
+        public IList<JokeDto> GetJokes(GetJokesInput input)
+        {
+            var jokes = _jokeRepository.GetAll().OrderByDescending(x => x.CreateTime).PageBy(input);
+
+            return jokes.MapTo<IList<JokeDto>>();
+        }
     }
 }

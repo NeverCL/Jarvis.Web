@@ -13,16 +13,29 @@ namespace Module
     /// </summary>
     public static class ModuleServiceCollectionExtensions
     {
-        static List<Type> Types;
+        static List<Type> Types = new List<Type>();
+        static List<Assembly> Assemblies = new List<Assembly>();
 
-        static void Init()
+        static async Task Init()
         {
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies().Select(Assembly.Load).ToList();
-            var types = new List<Type>();
-            foreach (var assembly in assemblies)
-                types.AddRange(assembly.GetTypes());
-            Types = types;
+            await Task.Run(() =>
+            {
+                var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+                //var assemblies = Assembly.GetEntryAssembly().GetReferencedAssemblies().Select(Assembly.Load).ToList();
+                foreach (var assembly in assemblies)
+                {
+                    var types = assembly.GetTypes();
+                    foreach (var type in types)
+                    {
+                        if (type.BaseType == typeof(InitModule))
+                        {
+                            Assemblies.Add(assembly);
+                            Types.AddRange(types);
+                            break;
+                        }
+                    }
+                }
+            });
         }
 
         /// <summary>
@@ -38,7 +51,8 @@ namespace Module
 
         public static async Task<ServiceProvider> AddModuleAsync(this IServiceCollection services)
         {
-            Init();
+            await Init();
+
             // 1. 加载通用型
             foreach (var type in Types)
             {

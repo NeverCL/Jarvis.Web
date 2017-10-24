@@ -8,6 +8,6 @@ namespace Jarvis.Application.Joke
 {
     public interface IJokeApplication
     {
-        //IList<JokeDto> GetJokes(GetJokesInput input);
+        IList<JokeDto> GetJokes(GetJokesInput input);
     }
 }

@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Jarvis.Core\Jarvis.Core.csproj" />
+    <ProjectReference Include="..\Jarvis.EntityFrameworkCore\Jarvis.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Module\Module.csproj" />
   </ItemGroup>
 

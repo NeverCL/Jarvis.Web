@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Threading;
+using Newtonsoft.Json;
 using Module.Domain.Entities;
 
 namespace Jarvis.Core.HttpData

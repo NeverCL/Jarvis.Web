@@ -12,21 +12,19 @@ namespace Jarvis.Tests
     public class JokeTests : JarvisTestBase
     {
         private readonly IJokeApplication _jokeApplication;
-        private readonly JokeFactory _jokeFactory;
 
 
         public JokeTests()
         {
             this._jokeApplication = Resolve<IJokeApplication>();
-            this._jokeFactory = Resolve<JokeFactory>();
         }
 
         [Fact]
         public void Should_NotNull_GetJokes()
         {
-            //var jokes = _jokeApplication.GetJokes(new GetJokesInput());
-            //jokes.ShouldNotBeNull();
-            //jokes.Count.ShouldBeGreaterThan(0);
+            var jokes = _jokeApplication.GetJokes(new GetJokesInput());
+            jokes.ShouldNotBeNull();
+            jokes.Count.ShouldBeGreaterThan(0);
         }
 
         [Fact]
