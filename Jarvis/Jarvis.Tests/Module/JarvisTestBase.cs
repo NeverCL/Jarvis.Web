@@ -44,7 +44,10 @@ namespace Jarvis.Tests.Module
             //serviceCollection.AddTransient(typeof(DbContext), typeof(JarvisDbContext));
             _serviceProvider = await serviceCollection.AddModuleAsync();
             var dataFactory = _serviceProvider.GetService<HttpDataFactory>();
+            var uow = _serviceProvider.GetService<JarvisUnitOfWork>();
             dataFactory.GetDataList();
+            dataFactory.SaveData(new HttpData(1, SiteType.Joke));
+            uow.SaveChanges();
         }
 
         public T Resolve<T>()

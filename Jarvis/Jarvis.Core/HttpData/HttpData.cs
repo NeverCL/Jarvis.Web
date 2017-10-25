@@ -20,13 +20,6 @@ namespace Jarvis.Core.HttpData
         public string Data { get; set; }
 
         public SiteType Type { get; set; }
-
-        //public override bool Equals(object obj)
-        //{
-        //    if (obj is HttpData)
-        //        return ((HttpData) obj).Data == this.Data && ((HttpData) obj).Type == this.Type;
-        //    return false;
-        //}
     }
 
     public enum SiteType
@@ -35,6 +28,5 @@ namespace Jarvis.Core.HttpData
         /// 搞笑妹子
         /// </summary>
         Joke = 0,
-
     }
 }

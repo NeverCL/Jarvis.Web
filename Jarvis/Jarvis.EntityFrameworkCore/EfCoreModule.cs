@@ -13,6 +13,7 @@ namespace Jarvis.EntityFrameworkCore
         public override Task InitializeAsync(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient(typeof(IRepository<,>), typeof(JarvisRepository<,>));
+            serviceCollection.AddTransient(typeof(JarvisUnitOfWork), typeof(JarvisUnitOfWork));
             return base.InitializeAsync(serviceCollection);
         }
     }

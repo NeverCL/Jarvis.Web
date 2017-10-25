@@ -26,7 +26,7 @@ namespace Jarvis.EntityFrameworkCore
 
     public class JarvisUnitOfWork : EfUnitOfWork<JarvisDbContext>, ITransientDependency
     {
-        public JarvisUnitOfWork(JarvisDbContext dbContext) : base(dbContext)
+        public JarvisUnitOfWork(IDbContextProvider<JarvisDbContext> dbContextProvider) : base(dbContextProvider)
         {
         }
     }

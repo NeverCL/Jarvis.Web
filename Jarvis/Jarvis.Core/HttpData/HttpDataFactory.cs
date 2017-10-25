@@ -16,19 +16,20 @@ namespace Jarvis.Core.HttpData
             _httpDataRepository = httpDataRepository;
         }
 
+
         public List<object> GetDataList()
         {
             var data = _httpDataRepository.GetAll().ToList();
             return null;
         }
-        
 
-        //public void SaveData(HttpData data)
-        //{
-        //    if (!_httpDataRepository.Any(x => x == data))
-        //    {
-        //        _httpDataRepository.Add(data);
-        //    }
-        //}
+
+        public void SaveData(HttpData data)
+        {
+            if (!_httpDataRepository.Any(x => x == data))
+            {
+                _httpDataRepository.Insert(data);
+            }
+        }
     }
 }

@@ -279,5 +279,19 @@ namespace Module.Domain.Repository
         /// <param name="predicate">A method to filter count</param>
         /// <returns>Count of entities</returns>
         Task<long> LongCountAsync(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        bool Any(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate);
     }
 }

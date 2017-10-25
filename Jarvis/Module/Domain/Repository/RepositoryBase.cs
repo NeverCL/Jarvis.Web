@@ -234,6 +234,16 @@ namespace Module.Domain.Repository
             return Task.FromResult(LongCount(predicate));
         }
 
+        public bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return GetAll().Any(predicate);
+        }
+
+        public Task<bool> AnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Task.FromResult(Any(predicate));
+        }
+
         protected static Expression<Func<TEntity, bool>> CreateEqualityExpressionForId(TPrimaryKey id)
         {
             var lambdaParam = Expression.Parameter(typeof(TEntity));

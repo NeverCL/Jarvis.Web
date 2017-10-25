@@ -15,17 +15,9 @@ namespace Module.EntityFrameworkCore.Uow
 
         private readonly TDbContext _dbContext;
 
-        private static ThreadLocal<TDbContext> _threadLocalDbContext;
-
-        public EfUnitOfWork(TDbContext dbContext)
+        public EfUnitOfWork(IDbContextProvider<TDbContext> dbContextProvider)
         {
-            _dbContext = dbContext;
-            if (_threadLocalDbContext != null && _threadLocalDbContext.IsValueCreated)
-                _dbContext = _threadLocalDbContext.Value;
-            else
-            {
-                _threadLocalDbContext = new ThreadLocal<TDbContext> { Value = dbContext };
-            }
+            _dbContext = dbContextProvider.GetDbContext();
         }
 
         public virtual TDbContext GetDbContext()
