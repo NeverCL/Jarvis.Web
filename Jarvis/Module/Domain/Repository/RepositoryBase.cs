@@ -10,7 +10,7 @@ using Module.Domain.Entities;
 
 namespace Module.Domain.Repository
 {
-    public abstract class RepositoryBase<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>, ITransientDependency 
+    public abstract class RepositoryBase<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey> 
         where TEntity : class, IEntity<TPrimaryKey>
     {
         public abstract IQueryable<TEntity> GetAll();

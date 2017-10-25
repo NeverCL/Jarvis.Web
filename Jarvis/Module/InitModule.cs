@@ -12,8 +12,8 @@ namespace Module
         /// <summary>
         /// 创建IServiceCollection时 执行
         /// </summary>
-        /// <param name="services"></param>
-        public virtual void Initialize(IServiceCollection services)
+        /// <param name="serviceCollection"></param>
+        public virtual void Initialize(IServiceCollection serviceCollection)
         {
             
         }
@@ -21,21 +21,21 @@ namespace Module
         /// <summary>
         /// 创建IServiceProvider后 执行
         /// </summary>
-        /// <param name="provider"></param>
-        public virtual void PostInitialize(IServiceProvider provider)
+        /// <param name="serviceProvider"></param>
+        public virtual void PostInitialize(IServiceProvider serviceProvider)
         {
             
         }
 
-        public virtual Task InitializeAsync(IServiceCollection services)
+        public virtual Task InitializeAsync(IServiceCollection serviceCollection)
         {
-            Initialize(services);
+            Initialize(serviceCollection);
             return Task.CompletedTask;
         }
 
-        public virtual Task PostInitializeAsync(IServiceProvider provider)
+        public virtual Task PostInitializeAsync(IServiceProvider serviceProvider)
         {
-            PostInitialize(provider);
+            PostInitialize(serviceProvider);
             return Task.CompletedTask;
         }
     }

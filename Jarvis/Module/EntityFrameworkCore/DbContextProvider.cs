@@ -7,7 +7,7 @@ using Module.Dependency;
 
 namespace Module.EntityFrameworkCore
 {
-    public class DbContextProvider<TDbContext> : ITransientDependency, IDbContextProvider<TDbContext> where TDbContext : DbContext
+    public class DbContextProvider<TDbContext> : IDbContextProvider<TDbContext> where TDbContext : DbContext
     {
         private static ThreadLocal<TDbContext> _threadLocalDbContext;
         private readonly TDbContext _dbContext;

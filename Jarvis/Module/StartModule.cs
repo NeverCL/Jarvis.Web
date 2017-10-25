@@ -8,9 +8,10 @@ namespace Module
 {
     public class StartModule : InitModule
     {
-        public override void Initialize(IServiceCollection services)
+        public override void Initialize(IServiceCollection serviceCollection)
         {
-            base.Initialize(services);
+            serviceCollection.AddTransient(typeof(IDbContextProvider<>), typeof(DbContextProvider<>));
+            base.Initialize(serviceCollection);
         }
 
         public override void PostInitialize(IServiceProvider provider)
